@@ -26,3 +26,8 @@ ansible-playbook tests/<image>.yml -i tests/<image>
 ```
 
 where __image__ is e.g. alpine-php7.
+
+### Change-log
+
+* __0.1.0__:
+  - alpine-php7 image was added

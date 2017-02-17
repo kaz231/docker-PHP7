@@ -17,6 +17,7 @@ env:
 
 before_install:
   - pip install ansible docker-py
+  - pip list
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
 
 install:

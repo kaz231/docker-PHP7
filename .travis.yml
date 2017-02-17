@@ -1,9 +1,6 @@
 language: python
 sudo: required
 
-services:
-  - docker
-
 addons:
   apt:
     packages:
@@ -16,7 +13,7 @@ env:
       DOCKERFILE: Dockerfile
 
 before_install:
-  - pip install ansible "docker-py==1.8.0"
+  - pip install ansible docker docker-py
   - pip list
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
 

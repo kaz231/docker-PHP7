@@ -1,0 +1,32 @@
+language: python
+sudo: required
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - python-pip
+
+env:
+  matrix:
+    - DOCKER_REPOSITORY: kaz231/alpine-php7
+      IMAGE_NAME: alpine-php7
+      DOCKERFILE: Dockerfile
+
+before_install:
+  - pip install ansible
+  - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
+
+install:
+  - docker build -f $DOCKERFILE -t $DOCKER_REPOSITORY:latest .
+
+script:
+  - ansible-playbook "tests/$IMAGE_NAME.yml" -i "tests/$IMAGE_NAME" -c local
+
+after_success:
+  - if [ "$TRAVIS_TAG" != "" ]; then
+    docker tag $DOCKER_REPOSITORY:latest $DOCKER_REPOSITORY:$TRAVIS_TAG;
+    docker push $DOCKER_REPOSITORY;
+    fi

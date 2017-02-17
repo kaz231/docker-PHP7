@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Run kaz231/alpine-php7 image
+      docker_container:
+        name: alpine-php7
+        image: kaz231/alpine-php7
+
+    - name: Register logs
+      shell: docker logs -f alpine-php7
+      register: image_logs
+
+- name: php7 is installed
+  hosts: localhost
+  tasks:
+    - name: Assert php7 is present
+      assert:
+        that:
+          - "image_logs.stdout.find('PHP 7') != -1"

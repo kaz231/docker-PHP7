@@ -16,7 +16,7 @@ env:
       DOCKERFILE: Dockerfile
 
 before_install:
-  - pip install ansible
+  - pip install ansible docker-py
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
 
 install:

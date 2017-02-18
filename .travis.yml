@@ -16,6 +16,7 @@ env:
       DOCKERFILE: Dockerfile
     - DOCKER_REPOSITORY: kaz231/alpine-php7-dev
       IMAGE_NAME: alpine-php7-dev
+      DOCKERFILE: Dockerfile.dev
 
 before_install:
   - pip install ansible

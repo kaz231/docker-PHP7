@@ -10,8 +10,6 @@ addons:
       - python-pip
 
 env:
-  global:
-    DOCKER_COMPOSE_VERSION: 1.7.0
   matrix:
     - DOCKER_REPOSITORY: kaz231/alpine-php7
       IMAGE_NAME: alpine-php7
@@ -19,9 +17,7 @@ env:
 
 before_install:
   - pip install ansible
-  - pip list
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
-  - docker-compose -v
 
 install:
   - docker build -f $DOCKERFILE -t $DOCKER_REPOSITORY:latest .

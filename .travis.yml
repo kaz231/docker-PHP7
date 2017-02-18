@@ -10,17 +10,22 @@ addons:
       - python-pip
 
 env:
+  global:
+    DOCKER_COMPOSE_VERSION: 1.7.0
   matrix:
     - DOCKER_REPOSITORY: kaz231/alpine-php7
       IMAGE_NAME: alpine-php7
       DOCKERFILE: Dockerfile
 
 before_install:
-  - pip install ansible docker-py
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - pip install ansible
   - pip list
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
   - docker-compose -v
-  - whoami
 
 install:
   - docker build -f $DOCKERFILE -t $DOCKER_REPOSITORY:latest .

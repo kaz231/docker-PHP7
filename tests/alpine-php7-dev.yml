@@ -1,0 +1,24 @@
+---
+- name: Verify if php7 is installeds
+  hosts: localhost
+  tasks:
+    - name: Run kaz231/alpine-php7-dev image
+      shell: "docker run --rm --name 'alpine-php7-dev' kaz231/alpine-php7-dev"
+      register: php_version
+
+    - name: Assert php7 is present
+      assert:
+        that:
+          - "php_version.stdout.find('PHP 7') != -1"
+
+- name: Verify if composer is installed
+  hosts: localhost
+  tasks:
+    - name: Run kaz231/alpine-php7-dev image
+      shell: "docker run --entrypoint '/bin/sh' --rm --name 'alpine-php7-dev' kaz231/alpine-php7-dev -c 'composer -V'"
+      register: composer_version
+
+    - name: Assert composer is present
+      assert:
+        that:
+          - "composer_version.stdout.find('Composer version') != -1"

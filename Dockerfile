@@ -24,7 +24,11 @@ RUN apk update \
       php7-sockets \
       php7-openssl \
       php7-session \
+      php7-phar \
+      ca-certificates \
+      openssl \
     && ln -s /usr/bin/php7 /usr/bin/php \
+    && update-ca-certificates \
     && rm -rf /var/cache/apk/*
 
 WORKDIR $APP_DIR

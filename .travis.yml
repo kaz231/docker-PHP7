@@ -19,6 +19,8 @@ before_install:
   - pip install ansible docker-py
   - pip list
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
+  - docker-compose -v
+  - whoami
 
 install:
   - docker build -f $DOCKERFILE -t $DOCKER_REPOSITORY:latest .

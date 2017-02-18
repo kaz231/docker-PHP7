@@ -1,7 +1,10 @@
 ---
 - hosts: localhost
-  become_user: travis
   tasks:
+    - name: docker-py is present
+      pip:
+        name: docker-py
+
     - name: Run kaz231/alpine-php7 image
       docker_container:
         name: alpine-php7
@@ -12,7 +15,6 @@
       register: image_logs
 
 - name: php7 is installed
-  become_user: travis
   hosts: localhost
   tasks:
     - name: Assert php7 is present

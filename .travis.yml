@@ -18,11 +18,7 @@ env:
       DOCKERFILE: Dockerfile
 
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - pip install ansible docker-py
+  - pip install ansible
   - pip list
   - docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
   - docker-compose -v

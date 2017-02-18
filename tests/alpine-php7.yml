@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  become: true
   tasks:
     - name: Run kaz231/alpine-php7 image
       docker_container:
@@ -11,6 +12,7 @@
       register: image_logs
 
 - name: php7 is installed
+  become: true
   hosts: localhost
   tasks:
     - name: Assert php7 is present

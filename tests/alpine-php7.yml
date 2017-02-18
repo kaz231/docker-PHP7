@@ -4,6 +4,7 @@
     - name: docker-py is present
       pip:
         name: docker-py
+        version: 1.8.0
 
     - name: Run kaz231/alpine-php7 image
       docker_container:

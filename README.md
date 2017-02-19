@@ -6,6 +6,7 @@ Small docker images based on alpine:latest OS with PHP7 installed.
 ### Contained images
 
 * kaz231/alpine-php7
+* kaz231/alpine-php7-dev
 
 ### How to use it ?
 
@@ -29,5 +30,7 @@ where __image__ is e.g. alpine-php7.
 
 ### Change-log
 
+* __0.2.0__:
+  - dev version of alpine-php7 image was released (including composer)
 * __0.1.0__:
   - alpine-php7 image was added

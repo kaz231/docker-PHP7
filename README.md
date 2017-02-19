@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kaz231/docker-PHP7.svg?branch=master)](https://travis-ci.org/kaz231/docker-PHP7)
+
 PHP7 Docker Images
 ==================
 

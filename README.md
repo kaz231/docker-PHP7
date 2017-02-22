@@ -32,6 +32,9 @@ where __image__ is e.g. alpine-php7.
 
 ### Change-log
 
+* __0.3.0__:
+  - tests were reorganized into dedicated directory per image
+  - for dev image, user is created based on the gid and uid of the host's user
 * __0.2.0__:
   - dev version of alpine-php7 image was released (including composer)
 * __0.1.0__:

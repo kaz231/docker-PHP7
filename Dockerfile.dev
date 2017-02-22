@@ -8,10 +8,7 @@ ENV APP_USER_GROUP "app"
 ENV COMPOSER_DIR /etc/composer
 ENV COMPOSER_FILENAME composer
 
-RUN addgroup -S $APP_USER_GROUP \
-    && adduser -G $APP_USER_GROUP -S $APP_USER \
-    && mkdir -p $APP_DIR \
-    && chown -R $APP_USER:$APP_USER_GROUP $APP_DIR
+RUN mkdir -p $APP_DIR
 
 RUN apk update \
     && apk add \
@@ -29,6 +26,7 @@ RUN apk update \
       php7-phar \
       ca-certificates \
       openssl \
+      su-exec \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/*
@@ -39,9 +37,11 @@ RUN mkdir $COMPOSER_DIR \
     && rm composer-setup.php \
     && ln -s "$COMPOSER_DIR/$COMPOSER_FILENAME" /usr/bin
 
+COPY entrypoint/dev/docker-entrypoint.sh /usr/local/bin/
+
+VOLUME $APP_DIR
 WORKDIR $APP_DIR
-USER $APP_USER
 
-ENTRYPOINT [ "/usr/bin/php" ]
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-CMD ["--version"]
+CMD ["php"]

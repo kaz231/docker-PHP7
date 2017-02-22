@@ -1,0 +1,70 @@
+---
+- name: Verify if php7 is installeds
+  hosts: localhost
+  tasks:
+    - name: Fetch information about volume on host
+      stat:
+        path: volume
+      register: hv
+
+    - name: Run kaz231/alpine-php7-dev image
+      shell: >
+        docker
+        run -v {{ playbook_dir }}/{{ hv.stat.path }}:/var/app
+        --rm
+        --name 'alpine-php7-dev'
+        kaz231/alpine-php7-dev
+        php --version
+      register: php_version
+
+    - name: Assert php7 is present
+      assert:
+        that:
+          - "php_version.stdout.find('PHP 7') != -1"
+
+- name: Verify if composer is installed
+  hosts: localhost
+  tasks:
+    - name: Fetch information about volume on host
+      stat:
+        path: volume
+      register: hv
+
+    - name: Run kaz231/alpine-php7-dev image
+      shell: >
+        docker
+        run -v {{ playbook_dir }}/{{ hv.stat.path }}:/var/app
+        --rm
+        --name 'alpine-php7-dev'
+        kaz231/alpine-php7-dev
+        composer -V
+      register: composer_version
+
+    - name: Assert composer is present
+      assert:
+        that:
+          - "composer_version.stdout.find('Composer version') != -1"
+
+- name: Verify if user has the same UID and GID as volume's owner on host
+  hosts: localhost
+  tasks:
+    - name: Fetch information about volume on host
+      stat:
+        path: volume
+      register: hv
+
+    - name: Run kaz231/alpine-php7-dev image
+      shell: >
+        docker
+        run -v {{ playbook_dir }}/{{ hv.stat.path }}:/var/app
+        --rm
+        --name 'alpine-php7-dev'
+        kaz231/alpine-php7-dev
+        id
+      register: user_id
+
+    - name: Assert app's user has the same uid and gid as volume's owner on host
+      assert:
+        that:
+          - "user_id.stdout.find('uid={{ hv.stat.uid }}') != -1"
+          - "user_id.stdout.find('gid={{ hv.stat.gid }}') != -1"

@@ -26,7 +26,7 @@ install:
   - docker build -f $DOCKERFILE -t $DOCKER_REPOSITORY:latest .
 
 script:
-  - ansible-playbook "tests/$IMAGE_NAME.yml" -i "tests/$IMAGE_NAME" -c local
+  - ansible-playbook "tests/$IMAGE_NAME/tests.yml" -i "tests/localhost" -c local
 
 after_success:
   - if [ "$TRAVIS_TAG" != "" ]; then

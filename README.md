@@ -17,7 +17,7 @@ Image contains directory for your application that is stored in $APP_DIR env var
 You can use it in following way:
 
 ```
-docker run -v $(pwd):/var/app kaz231/alpine-php7 my_php_app.php
+docker run -v $(pwd):/var/app kaz231/alpine-php7 php my_php_app.php
 ```
 
 ### How to run tests ?
@@ -25,7 +25,7 @@ docker run -v $(pwd):/var/app kaz231/alpine-php7 my_php_app.php
 All tests are created using ansible. First created image is run and then output is verfied using assertions. You can simple run tests with command:
 
 ```
-ansible-playbook tests/<image>.yml -i tests/<image>
+ansible-playbook tests/<image>/tests.yml -i tests/localhost -c local
 ```
 
 where __image__ is e.g. alpine-php7.

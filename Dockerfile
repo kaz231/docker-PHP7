@@ -26,6 +26,7 @@ RUN apk update \
       php7-session \
       php7-phar \
       php7-xml \
+      php7-dom \
       ca-certificates \
       openssl \
     && ln -s /usr/bin/php7 /usr/bin/php \

@@ -32,6 +32,8 @@ where __image__ is e.g. alpine-php7.
 
 ### Change-log
 
+* __0.4.0__:
+  - php7-xml package was added to the list of dependencies for dev and prod image
 * __0.3.0__:
   - tests were reorganized into dedicated directory per image
   - for dev image, user is created based on the gid and uid of the host's user

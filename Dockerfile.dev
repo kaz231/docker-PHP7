@@ -25,6 +25,7 @@ RUN apk update \
       php7-session \
       php7-phar \
       php7-xml \
+      php7-dom \
       ca-certificates \
       openssl \
       su-exec \

@@ -29,15 +29,14 @@ RUN apk update \
       php7-dom \
       ca-certificates \
       openssl \
-    && ln -s /usr/bin/php7 /usr/bin/php \
+      su-exec \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/*
 
-COPY entrypoint/dev/docker-entrypoint.sh /usr/local/bin/
+COPY entrypoint/prod/docker-entrypoint.sh /usr/local/bin/
 
 WORKDIR $APP_DIR
-USER $APP_USER
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-CMD ["php --version"]
+CMD ["php", "--version"]

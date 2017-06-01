@@ -63,8 +63,7 @@
         id
       register: user_id
 
-    - name: Assert app's user has the same uid and gid as volume's owner on host
+    - name: Assert app's user has the same uid as volume's owner on host
       assert:
         that:
           - "user_id.stdout.find('uid={{ hv.stat.uid }}') != -1"
-          - "user_id.stdout.find('gid={{ hv.stat.gid }}') != -1"

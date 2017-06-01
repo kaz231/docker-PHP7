@@ -10,6 +10,11 @@ ENV COMPOSER_FILENAME composer
 
 RUN mkdir -p $APP_DIR
 
+RUN addgroup -S $APP_USER_GROUP \
+    && adduser -G $APP_USER_GROUP -S $APP_USER \
+    && mkdir -p $APP_DIR \
+    && chown -R $APP_USER:$APP_USER_GROUP $APP_DIR
+
 RUN apk update \
     && apk add \
       php7 \
@@ -29,6 +34,7 @@ RUN apk update \
       ca-certificates \
       openssl \
       su-exec \
+      shadow \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/*
 

@@ -33,9 +33,11 @@ RUN apk update \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/*
 
+COPY entrypoint/dev/docker-entrypoint.sh /usr/local/bin/
+
 WORKDIR $APP_DIR
 USER $APP_USER
 
-ENTRYPOINT [ "/usr/bin/php" ]
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-CMD ["--version"]
+CMD ["php --version"]

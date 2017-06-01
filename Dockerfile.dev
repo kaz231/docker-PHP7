@@ -29,7 +29,6 @@ RUN apk update \
       ca-certificates \
       openssl \
       su-exec \
-    && ln -s /usr/bin/php7 /usr/bin/php \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/*
 

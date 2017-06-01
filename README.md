@@ -32,6 +32,9 @@ where __image__ is e.g. alpine-php7.
 
 ### Change-log
 
+* __0.6.0__:
+  - custom entrypoint was added for prod image
+  - su-exec is installed for prod image
 * __0.5.0__:
   - php7-dom package was added to the list of dependencies for dev and prod images
 * __0.4.0__:

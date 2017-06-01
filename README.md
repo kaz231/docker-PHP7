@@ -32,6 +32,10 @@ where __image__ is e.g. alpine-php7.
 
 ### Change-log
 
+* __0.7.0__:
+  - shadow package was added for dev image
+  - app's user is created in Dockerfile instead of entrypoint
+  - usdermod was used to imitate owner of volume
 * __0.6.0__:
   - custom entrypoint was added for prod image
   - su-exec is installed for prod image

@@ -32,6 +32,8 @@ where __image__ is e.g. alpine-php7.
 
 ### Change-log
 
+* __0.7.1__:
+  - php7-tokenizer and php7-xmlwriter packages were added to list of installed for dev and prod
 * __0.7.0__:
   - shadow package was added for dev image
   - app's user is created in Dockerfile instead of entrypoint

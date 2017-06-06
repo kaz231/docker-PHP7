@@ -10,3 +10,35 @@
       assert:
         that:
           - "php_version.stdout.find('PHP 7') != -1"
+
+    - shell: "docker run --rm --name 'alpine-php7' kaz231/alpine-php7 php -m"
+      register: php_modules
+
+    - name: Assert that php modules are present
+      assert:
+        that:
+          - "php_modules.stdout.find('Core') != -1"
+          - "php_modules.stdout.find('ctype') != -1"
+          - "php_modules.stdout.find('curl') != -1"
+          - "php_modules.stdout.find('date') != -1"
+          - "php_modules.stdout.find('dom') != -1"
+          - "php_modules.stdout.find('filter') != -1"
+          - "php_modules.stdout.find('hash') != -1"
+          - "php_modules.stdout.find('intl') != -1"
+          - "php_modules.stdout.find('json') != -1"
+          - "php_modules.stdout.find('libxml') != -1"
+          - "php_modules.stdout.find('mbstring') != -1"
+          - "php_modules.stdout.find('mcrypt') != -1"
+          - "php_modules.stdout.find('openssl') != -1"
+          - "php_modules.stdout.find('pcre') != -1"
+          - "php_modules.stdout.find('Phar') != -1"
+          - "php_modules.stdout.find('readline') != -1"
+          - "php_modules.stdout.find('Reflection') != -1"
+          - "php_modules.stdout.find('session') != -1"
+          - "php_modules.stdout.find('sockets') != -1"
+          - "php_modules.stdout.find('SPL') != -1"
+          - "php_modules.stdout.find('standard') != -1"
+          - "php_modules.stdout.find('tokenizer') != -1"
+          - "php_modules.stdout.find('xml') != -1"
+          - "php_modules.stdout.find('xmlwriter') != -1"
+          - "php_modules.stdout.find('Zend OPcache') != -1"

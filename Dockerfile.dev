@@ -31,6 +31,8 @@ RUN apk update \
       php7-phar \
       php7-xml \
       php7-dom \
+      php7-tokenizer \
+      php7-xmlwriter \
       ca-certificates \
       openssl \
       su-exec \
